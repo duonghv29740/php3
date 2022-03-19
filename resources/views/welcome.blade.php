@@ -20,7 +20,6 @@
             </thead>
             <tbody>
                 @foreach ($student as $s)
-                    @if($s['age'] <20 )
                     <tr>
                         <td>{{$s['name']}}</td>
                         <td>{{$s['age']}}</td>
@@ -30,7 +29,6 @@
                             <img src="{{$s['avatar']}}" alt="" width="200px">
                         </td>
                     </tr>
-                    @endif
                 @endforeach
             
             </tbody>

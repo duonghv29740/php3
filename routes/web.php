@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 // Su dung Request $request trong callback cua route
@@ -22,18 +23,18 @@ Route::get('/', function () {
             'age' => 20,
             'class' => 'WE16201',
             'id' => '1',
-            'avatar' => "https://iap.poly.edu.vn/user/ph/PH13025.jpg"
+            'avatar' => "https://thelifetank.com/wp-content/uploads/2018/08/avatar-default-icon.png"
         ],
         [
-            'name' => 'Tuannda3',
+            'name' => 'Tuannda312',
             'age' => 20,
             'class' => 'WE16201',
             'id' => '2',
-            'avatar' => "https://iap.poly.edu.vn/user/ph/PH13025.jpg"
+            'avatar' => "https://thelifetank.com/wp-content/uploads/2018/08/avatar-default-icon.png"
         ],
     ];
     // dd($students);
-    return view('welcome', ['students' => $students]);
+    return view('welcome', ['student' => $students]);
 });
 
 // Thu muc view: resources/views/"auth/login".blade.php => auth.login
@@ -44,13 +45,29 @@ Route::get('/login', function () {
     // return view('auth.login')->with('emaill', $email);
     // view(ten view, mang gia tri truyen sang view)
     return view('auth.login', [
-        'emaill' => $email,
+        'email' => $email,
         'password' => $password
     ]);
 });
 
 Route::get('/home', function () {
-    return view('home');
+    $students = [
+        [
+            'name' => 'Tuannda3',
+            'age' => 20,
+            'class' => 'WE16201',
+            'id' => '1',
+            'avatar' => "https://thelifetank.com/wp-content/uploads/2018/08/avatar-default-icon.png"
+        ],
+        [
+            'name' => 'Tuannda312',
+            'age' => 20,
+            'class' => 'WE16201',
+            'id' => '2',
+            'avatar' => "https://thelifetank.com/wp-content/uploads/2018/08/avatar-default-icon.png"
+        ],
+    ];
+    return view('home', ['student' => $students]);
 });
 
 // Route kem query string va params
@@ -62,6 +79,7 @@ Route::get('/users/{userId}/{username?}', function (
 ) {
     dd($userId, $userName, $request->all());
 });
+
 Route::get('/user/{userId}/{username?}', function (
    // name, height, weight, age, gender, avatar.
     Request $request,
@@ -96,3 +114,4 @@ Route::get('/user/{userId}/{username?}', function (
     ];
     return view('home',['userId' => $userId,'userName'=>$userName,'request' => $request,'people' => $people]);
 });
+Route::get('/category',[CategoryController::class,'index']);
